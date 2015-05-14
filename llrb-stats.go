@@ -4,7 +4,7 @@
 
 package buffer
 
-// GetHeight() returns an item in the tree with key @key, and it's height in the tree
+// GetHeight() returns an item in the tree with key @key, and its height in the tree
 func (t *LLRB) GetHeight(key Item) (result Item, depth int) {
 	return t.getHeight(t.root, key)
 }
