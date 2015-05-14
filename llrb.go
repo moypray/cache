@@ -147,6 +147,18 @@ func (t *LLRB) InsertNoReplaceBulk(items ...Item) {
 	}
 }
 
+// If @repeat is true, when an existing element has the same order,
+// keep both elements remain in the tree and they will keep the relative
+// order, which means FIFO.
+// If @repeat is false, when an existing element has the same order,
+// the former will be replaced by the latter.
+func (t *LLRB) Add(item Item, repeat bool) Item {
+	if repeat {
+		return t.InsertNoReplace(item)
+	}
+	return t.ReplaceOrInsert(item)
+}
+
 // ReplaceOrInsert inserts item into the tree. If an existing
 // element has the same order, it is removed from the tree and returned.
 func (t *LLRB) ReplaceOrInsert(item Item) Item {
@@ -185,13 +197,15 @@ func (t *LLRB) replaceOrInsert(h *Node, item Item) (*Node, Item) {
 
 // InsertNoReplace inserts item into the tree. If an existing
 // element has the same order, both elements remain in the tree.
-func (t *LLRB) InsertNoReplace(item Item) {
+func (t *LLRB) InsertNoReplace(item Item) Item {
 	if item == nil {
 		panic("inserting nil item")
 	}
 	t.root = t.insertNoReplace(t.root, item)
 	t.root.Black = true
 	t.count++
+
+	return item
 }
 
 func (t *LLRB) insertNoReplace(h *Node, item Item) *Node {
