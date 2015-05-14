@@ -4,6 +4,9 @@
 
 package buffer
 
+// Len returns the number of nodes in the tree.
+func (t *LLRB) Len() int { return t.count }
+
 // GetHeight() returns an item in the tree with key @key, and its height in the tree
 func (t *LLRB) GetHeight(key Item) (result Item, depth int) {
 	return t.getHeight(t.root, key)
