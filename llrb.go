@@ -90,9 +90,6 @@ func (t *LLRB) Root() *Node {
 	return t.root
 }
 
-// Len returns the number of nodes in the tree.
-func (t *LLRB) Len() int { return t.count }
-
 // Has returns true if the tree contains an element whose order is the same as that of key.
 func (t *LLRB) Has(key Item) bool {
 	return t.Get(key) != nil
