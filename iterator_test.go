@@ -12,7 +12,7 @@ func TestAscendGreaterOrEqual(t *testing.T) {
 	tree.InsertNoReplace(Int(1))
 	tree.InsertNoReplace(Int(3))
 	var ary []Item
-	tree.AscendGreaterOrEqual(Int(-1), func(i Item) bool {
+	tree.AscendGreaterOrEqual(Int(-1), func(i Item, t *LLRB) bool {
 		ary = append(ary, i)
 		return true
 	})
@@ -21,7 +21,7 @@ func TestAscendGreaterOrEqual(t *testing.T) {
 		t.Errorf("expected %v but got %v", expected, ary)
 	}
 	ary = nil
-	tree.AscendGreaterOrEqual(Int(3), func(i Item) bool {
+	tree.AscendGreaterOrEqual(Int(3), func(i Item, tree *LLRB) bool {
 		ary = append(ary, i)
 		return true
 	})
@@ -30,7 +30,7 @@ func TestAscendGreaterOrEqual(t *testing.T) {
 		t.Errorf("expected %v but got %v", expected, ary)
 	}
 	ary = nil
-	tree.AscendGreaterOrEqual(Int(2), func(i Item) bool {
+	tree.AscendGreaterOrEqual(Int(2), func(i Item, tree *LLRB) bool {
 		ary = append(ary, i)
 		return true
 	})
@@ -47,7 +47,7 @@ func TestDescendLessOrEqual(t *testing.T) {
 	tree.InsertNoReplace(Int(1))
 	tree.InsertNoReplace(Int(3))
 	var ary []Item
-	tree.DescendLessOrEqual(Int(10), func(i Item) bool {
+	tree.DescendLessOrEqual(Int(10), func(i Item, tree *LLRB) bool {
 		ary = append(ary, i)
 		return true
 	})
@@ -56,7 +56,7 @@ func TestDescendLessOrEqual(t *testing.T) {
 		t.Errorf("expected %v but got %v", expected, ary)
 	}
 	ary = nil
-	tree.DescendLessOrEqual(Int(4), func(i Item) bool {
+	tree.DescendLessOrEqual(Int(4), func(i Item, tree *LLRB) bool {
 		ary = append(ary, i)
 		return true
 	})
@@ -65,7 +65,7 @@ func TestDescendLessOrEqual(t *testing.T) {
 		t.Errorf("expected %v but got %v", expected, ary)
 	}
 	ary = nil
-	tree.DescendLessOrEqual(Int(5), func(i Item) bool {
+	tree.DescendLessOrEqual(Int(5), func(i Item, tree *LLRB) bool {
 		ary = append(ary, i)
 		return true
 	})

@@ -45,7 +45,7 @@ func TestReverseInsertOrder(t *testing.T) {
 		tree.ReplaceOrInsert(Int(n - i))
 	}
 	i := 0
-	tree.AscendGreaterOrEqual(Int(0), func(item Item) bool {
+	tree.AscendGreaterOrEqual(Int(0), func(item Item, tree *LLRB) bool {
 		i++
 		if item.(Int) != Int(i) {
 			t.Errorf("bad order: got %d, expect %d", item.(Int), i)
@@ -63,7 +63,7 @@ func TestRange(t *testing.T) {
 		tree.ReplaceOrInsert(i)
 	}
 	k := 0
-	tree.AscendRange(String("ab"), String("ac"), func(item Item) bool {
+	tree.AscendRange(String("ab"), String("ac"), func(item Item, tree *LLRB) bool {
 		if k > 3 {
 			t.Fatalf("returned more items than expected")
 		}
@@ -85,7 +85,7 @@ func TestRandomInsertOrder(t *testing.T) {
 		tree.ReplaceOrInsert(Int(perm[i]))
 	}
 	j := 0
-	tree.AscendGreaterOrEqual(Int(0), func(item Item) bool {
+	tree.AscendGreaterOrEqual(Int(0), func(item Item, tree *LLRB) bool {
 		if item.(Int) != Int(j) {
 			t.Fatalf("bad order")
 		}
@@ -158,7 +158,7 @@ func TestRandomInsertPartialDeleteOrder(t *testing.T) {
 		tree.Delete(Int(i))
 	}
 	j := 0
-	tree.AscendGreaterOrEqual(Int(0), func(item Item) bool {
+	tree.AscendGreaterOrEqual(Int(0), func(item Item, tree *LLRB) bool {
 		switch j {
 		case 0:
 			if item.(Int) != Int(0) {
@@ -229,7 +229,7 @@ func TestInsertNoReplace(t *testing.T) {
 		}
 	}
 	j := 0
-	tree.AscendGreaterOrEqual(Int(0), func(item Item) bool {
+	tree.AscendGreaterOrEqual(Int(0), func(item Item, tree *LLRB) bool {
 		if item.(Int) != Int(j/2) {
 			t.Fatalf("bad order")
 		}
