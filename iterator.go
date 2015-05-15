@@ -1,6 +1,6 @@
 package buffer
 
-type ItemIterator func(i Item) bool
+type ItemIterator func(i Item, t *LLRB) bool
 
 //func (t *Tree) Ascend(iterator ItemIterator) {
 //	t.AscendGreaterOrEqual(Inf(-1), iterator)
@@ -24,7 +24,7 @@ func (t *LLRB) ascendRange(h *Node, inf, sup Item, iterator ItemIterator) bool {
 	if !t.ascendRange(h.Left, inf, sup, iterator) {
 		return false
 	}
-	if !iterator(h.Item) {
+	if !iterator(h.Item, t) {
 		return false
 	}
 	return t.ascendRange(h.Right, inf, sup, iterator)
@@ -44,7 +44,7 @@ func (t *LLRB) ascendGreaterOrEqual(h *Node, pivot Item, iterator ItemIterator) 
 		if !t.ascendGreaterOrEqual(h.Left, pivot, iterator) {
 			return false
 		}
-		if !iterator(h.Item) {
+		if !iterator(h.Item, t) {
 			return false
 		}
 	}
@@ -62,7 +62,7 @@ func (t *LLRB) ascendLessThan(h *Node, pivot Item, iterator ItemIterator) bool {
 	if !t.ascendLessThan(h.Left, pivot, iterator) {
 		return false
 	}
-	if !iterator(h.Item) {
+	if !iterator(h.Item, t) {
 		return false
 	}
 	if less(h.Item, pivot) {
@@ -85,7 +85,7 @@ func (t *LLRB) descendLessOrEqual(h *Node, pivot Item, iterator ItemIterator) bo
 		if !t.descendLessOrEqual(h.Right, pivot, iterator) {
 			return false
 		}
-		if !iterator(h.Item) {
+		if !iterator(h.Item, t) {
 			return false
 		}
 	}
