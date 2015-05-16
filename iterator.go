@@ -1,4 +1,4 @@
-package buffer
+package cache
 
 type ItemIterator func(i Item, t *LLRB) bool
 

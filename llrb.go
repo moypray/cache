@@ -14,7 +14,7 @@
 //  implementation of 2-3 trees is a recent improvement on the traditional implementation,
 //  observed and documented by Robert Sedgewick.
 //
-package buffer
+package cache
 
 // Tree is a Left-Leaning Red-Black (LLRB) implementation of 2-3 trees
 type LLRB struct {
