@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package buffer
+package cache
 
 // Len returns the number of nodes in the tree.
 func (t *LLRB) Len() int { return t.count }
