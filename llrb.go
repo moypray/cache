@@ -16,6 +16,11 @@
 //
 package cache
 
+const (
+	MOD_REPLACE   = 0
+	MOD_NOREPLACE = 1
+)
+
 // Tree is a Left-Leaning Red-Black (LLRB) implementation of 2-3 trees
 type LLRB struct {
 	count int
@@ -152,8 +157,8 @@ func (t *LLRB) InsertNoReplaceBulk(items ...Item) {
 // order, which means FIFO.
 // If @repeat is false, when an existing element has the same order,
 // the former will be replaced by the latter.
-func (t *LLRB) Add(item Item, repeat bool) Item {
-	if repeat {
+func (t *LLRB) Add(item Item, mod uint) Item {
+	if mod == MOD_NOREPLACE {
 		return t.InsertNoReplace(item)
 	}
 	return t.ReplaceOrInsert(item)
