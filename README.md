@@ -32,10 +32,10 @@ If anyone has any objections, please let me know.
 	
 	func main() {
 	    buffer := cache.New()
-	    buffer.ReplaceOrInsert(cache.Int(1))
-	    buffer.ReplaceOrInsert(cache.Int(2))
-	    buffer.ReplaceOrInsert(cache.Int(3))
-	    buffer.ReplaceOrInsert(cache.Int(4))
+	    buffer.Add(cache.Int(1), cache.MOD_NOREPLACE)
+	    buffer.Add(cache.Int(2), cache.MOD_NOREPLACE)
+	    buffer.Add(cache.Int(3), cache.MOD_NOREPLACE)
+	    buffer.Add(cache.Int(4), cache.MOD_NOREPLACE)
 	    buffer.DeleteMin()
 	    buffer.Delete(cache.Int(4))
 	    buffer.AscendGreaterOrEqual(buffer.Min(), Print)
@@ -77,11 +77,11 @@ If anyone has any objections, please let me know.
 		buffer := cache.New()
 		var1 := Var{
 			Expiry: time.Now().Add(time.Second * 10),
-			ID:     "var5",
+			ID:     "var1",
 		}
 		var2 := Var{
 			Expiry: time.Now().Add(time.Second * 20),
-			ID:     "var4",
+			ID:     "var2",
 		}
 		var3 := Var{
 			Expiry: time.Now().Add(time.Second * 30),
@@ -89,18 +89,18 @@ If anyone has any objections, please let me know.
 		}
 		var4 := Var{
 			Expiry: time.Now().Add(time.Second * 40),
-			ID:     "var2",
+			ID:     "var4",
 		}
 		var5 := Var{
 			Expiry: time.Now().Add(time.Second * 50),
-			ID:     "var1",
+			ID:     "var5",
 		}
 	
-		buffer.ReplaceOrInsert(var1)
-		buffer.ReplaceOrInsert(var2)
-		buffer.ReplaceOrInsert(var3)
-		buffer.ReplaceOrInsert(var4)
-		buffer.ReplaceOrInsert(var5)
+		buffer.Add(var1, cache.MOD_REPLACE)
+		buffer.Add(var2, cache.MOD_REPLACE)
+		buffer.Add(var3, cache.MOD_REPLACE)
+		buffer.Add(var4, cache.MOD_REPLACE)
+		buffer.Add(var5, cache.MOD_REPLACE)
 	
 		go func() {
 			for {
