@@ -1,4 +1,9 @@
-# Buffer
+# Cache
+
+This is a cache system written by Golang and base on red black tree.
+
+You can simply use this project to build a buffer/cache system for your own project or 
+just use the red black tree to do some other interesting things.
 
 ## FYI
 
