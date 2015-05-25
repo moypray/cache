@@ -11,6 +11,10 @@ it's better to open a new repo and keep it fresh.
 
 If anyone has any objections, please let me know.
 
+## Installation
+
+With a healthy Go language installed, simply run `go get github.com/HuKeping/cache`
+
 ## Example
 
 #### A simple case for `int` items.
